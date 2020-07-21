@@ -375,6 +375,10 @@ namespace ams::boot2 {
         /* Launch Atmosphere dmnt, using NcmStorageId_None to force SD card boot. */
         LaunchProgram(nullptr, ncm::ProgramLocation::Make(ncm::SystemProgramId::Dmnt, ncm::StorageId::None), 0);
 
+        /* Launch btdrv-mitm */
+        ncm::ProgramId BtdrvMitmProgramId = { 0x010000000000bd00ul };
+        LaunchProgram(nullptr, ncm::ProgramLocation::Make(BtdrvMitmProgramId, ncm::StorageId::None), 0);
+
         /* Check for and forward declare non-atmosphere mitm modules. */
         DetectAndDeclareFutureMitms();
 
